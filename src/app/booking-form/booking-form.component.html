@@ -1,0 +1,123 @@
+<body>
+    <ul>
+        <li>Home</li>
+        <li><a class="link-dark"href="/dashboard">Table</a></li>
+        <li><a class="link-dark"href="/booking">Seat Booking</a> </li>
+        <li>Details</li>
+    </ul>
+    <form [formGroup]="userForm">
+      <mat-grid-list cols="1" rowHeight="1200px">
+        <mat-grid-tile>
+            <div class="example-container">
+
+              <small *ngIf="userForm.controls['name']?.errors && userForm.controls['name']?.touched" class="text-danger">*Name is required</small>
+              <mat-form-field appearance="fill" class="width-100">
+                <mat-label> Name</mat-label>
+                <input matInput placeholder="Enter User Name" formControlName="name">
+              </mat-form-field>
+              <br>
+              <small *ngIf="userForm.controls['email']?.errors && userForm.controls['email']?.touched" class="text-danger">* Valid email is required</small>
+              <mat-form-field appearance="fill" class="width-100">
+                <mat-label>Email address</mat-label>
+                <input matInput placeholder="Ex. pat@example.com" formControlName="email">
+              </mat-form-field>
+              <br>
+              <small *ngIf="userForm.controls['aadhar_no']?.errors && userForm.controls['aadhar_no']?.touched" class="text-danger">* Valid Aadhar number is required</small>
+              <mat-form-field appearance="fill" class="width-100">
+                <mat-label>Aadhar Number</mat-label>
+                <input matInput placeholder="Enter Aadhar Number" formControlName="aadhar_no">
+              </mat-form-field>
+              <br>
+              <small *ngIf="userForm.controls['mobile_no']?.errors && userForm.controls['mobile_no']?.touched" class="text-danger">* Valid Mobile number is required</small>
+              <mat-form-field appearance="fill" class="width-100">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput placeholder="Enter Mobile Number" formControlName="mobile_no">
+              </mat-form-field>
+              <br>
+              <small *ngIf="userForm.controls['address']?.errors && userForm.controls['address']?.touched" class="text-danger">*Address is required</small>
+              <mat-form-field appearance="fill" class="width-100">
+                <mat-label>Permanent Address</mat-label>
+                <textarea matInput formControlName="address"></textarea>
+              </mat-form-field>
+              <br>
+              <div class="float-container">
+                <div class="float-child">
+                  <small *ngIf="userForm.controls['gender']?.errors" class="text-danger">*Select any one option<br></small>
+                  <label>Gender:</label>
+                  <br>
+                  <mat-radio-group aria-label="Select an option" formControlName="gender">
+                    <mat-radio-button class="example-radio-button" name="gender" value="Male"  >Male</mat-radio-button><br>
+                    <mat-radio-button class="example-radio-button" name="gender" value="Female" >Female</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+
+                <div class="float-child">
+                  <small *ngIf="userForm.controls['qualification']?.errors" class="text-danger">*Select any one option<br></small>
+                  <label>Qualification: </label><br>
+                  <mat-radio-group  aria-label="Select an option" formControlName="qualification">
+                    <mat-radio-button class="example-radio-button" name="qualification" value="10th"  >10th</mat-radio-button><br>
+                    <mat-radio-button class="example-radio-button" name="qualification" value="12th" >12th</mat-radio-button><br>
+                    <mat-radio-button class="example-radio-button" name="qualification" value="Graduate" >Graduate</mat-radio-button><br>
+                    <mat-radio-button class="example-radio-button" name="qualification" value="Post-Graduate" >Post-Graduate</mat-radio-button><br>
+                  </mat-radio-group>
+                </div>
+              </div>
+              <div>
+                <small *ngIf="userForm.controls['fee_structure']?.errors" class="text-danger">*Select any one option <br></small>
+                <label> Fees Option:</label>
+              <br>
+              <mat-radio-group aria-label="Select an option" formControlName="fee_structure">
+                <mat-radio-button class="example-radio-button" name="fees" value="1 Month-1000rs" >1 Month - 1000rs</mat-radio-button><br>
+                <mat-radio-button class="example-radio-button" name="fees" value="3 Month-2800rs" checked>3 Month - 2800rs</mat-radio-button><br>
+                <mat-radio-button class="example-radio-button" name="fees" value="12 Month-10,000rs" >12 Month - 10,000rs</mat-radio-button>
+              </mat-radio-group>
+              <br><br>
+              </div>
+
+              <div class="date">
+                <div class="pos">
+                  <small *ngIf="userForm.controls['start_date']?.errors && userForm.controls['start_date']?.touched" class="text-danger">*Start Date is required</small><br>
+                  <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Choose a Start date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="start_date">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker">
+                      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="pos">
+                  <small *ngIf="userForm.controls['end_date']?.errors && userForm.controls['end_date']?.touched" class="text-danger">*End Date is required</small><br>
+                  <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Choose a End date</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="end_date">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1">
+                      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+              <small *ngIf="userForm.controls['seat_no']?.errors && userForm.controls['seat_no']?.touched" class="text-danger">*Seat number is required<br></small>
+              <mat-form-field appearance="fill">
+                <mat-label>Select Seat Number</mat-label>
+                <mat-select formControlName="seat_no">
+                  <mat-option *ngFor="let seat of Seats" [value]="seat.value">
+                    {{seat.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br><br> 
+              <button type="button" [disabled]="!userForm.valid"  class="btn btn-primary btn-lg btn-block button_style" (click)="onSubmit()">Submit</button><br> 
+              <span *ngIf="!userForm.valid" class="text-danger"> *Select all the field </span>  
+            </div>
+ 
+        </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+
+
+</body>
+

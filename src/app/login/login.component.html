@@ -1,0 +1,22 @@
+
+<form [formGroup]="loginForm">
+  <div class="card" style="width: 30rem;">
+    <h5 class="card-header card text-center">Login</h5>
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">User Name</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your user name" formControlName="username">
+        <span class="text-danger" *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')">*Username is required</span>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleFormControlInput1" placeholder=" Enter password" formControlName="password">
+        <span class="text-danger" *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')">*password is required</span>
+
+      </div>
+    </div>
+    <div id="size"class="mb-3 card text-center">
+      <button class="btn btn-primary" [disabled]="!loginForm.valid" (click)="login()">Log in</button>
+    </div>
+  </div>
+</form>
