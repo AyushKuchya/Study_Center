@@ -10,6 +10,8 @@ import { DataTransferService } from '../data-transfer.service';
 export class BookingFormComponent implements OnInit {
   userData:any;
   userForm:FormGroup;
+  paymentStatus =[{value:'completed',viewValue:'Completed'},
+                  {value:'pending',viewValue:'Pending'}]
 
   constructor(private dataTransferService: DataTransferService) {
     this.dataTransferService.getData().subscribe(data => {
@@ -45,19 +47,20 @@ export class BookingFormComponent implements OnInit {
       gender: new FormControl(this.userData.gender,Validators.required),
       qualification:new FormControl(this.userData.qualification,Validators.required),
       fee_structure:new FormControl(this.userData.fee_structure,Validators.required),
-      start_date:new FormControl(null,Validators.required),
-      end_date:new FormControl(null,Validators.required),
+      start_date:new FormControl(Date,Validators.required),
+      end_date:new FormControl(Date,Validators.required),
       seat_no:new FormControl(null,Validators.required),
+      payment_status: new FormControl(null,Validators.required)
     })
   }
   onSubmit(){
-    let date =this.userForm.value.start_date.toLocaleDateString()
-    this.userForm.value.start_date = date 
-    console.log(this.userForm.value.start_date);
+    // let date =this.userForm.value.start_date.toLocaleDateString()
+    // this.userForm.value.start_date = date 
+    // console.log(this.userForm.value.start_date);
     
     console.log(this.userForm.value);
-    //alert("Form Submitted Successfully!!");
-    // this.userForm.reset() 
+    alert("Form Submitted Successfully!!");
+    this.userForm.reset() 
   }
 
 }

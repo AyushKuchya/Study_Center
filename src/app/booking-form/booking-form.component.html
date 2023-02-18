@@ -100,16 +100,34 @@
                   </mat-form-field>
                 </div>
               </div>
-              <small *ngIf="userForm.controls['seat_no']?.errors && userForm.controls['seat_no']?.touched" class="text-danger">*Seat number is required<br></small>
-              <mat-form-field appearance="fill">
-                <mat-label>Select Seat Number</mat-label>
-                <mat-select formControlName="seat_no">
-                  <mat-option *ngFor="let seat of Seats" [value]="seat.value">
-                    {{seat.viewValue}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <br><br> 
+              <div>
+                <div class="pos">
+                  <small *ngIf="userForm.controls['seat_no']?.errors && userForm.controls['seat_no']?.touched" class="text-danger">*Seat number is required<br></small>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Select Seat Number</mat-label>
+                    <mat-select formControlName="seat_no">
+                      <mat-option *ngFor="let seat of Seats" [value]="seat.value">
+                        {{seat.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  
+                </div>
+                <div class="pos">
+                  <small *ngIf="userForm.controls['payment_status']?.errors && userForm.controls['payment_status']?.touched" class="text-danger">*Payement status is required<br></small>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Payement Status</mat-label>
+                    <mat-select formControlName="payment_status">
+                      <mat-option *ngFor="let payment of paymentStatus" [value]="payment.value">
+                        {{payment.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+              </div>
+             
+             
               <button type="button" [disabled]="!userForm.valid"  class="btn btn-primary btn-lg btn-block button_style" (click)="onSubmit()">Submit</button><br> 
               <span *ngIf="!userForm.valid" class="text-danger"> *Select all the field </span>  
             </div>
