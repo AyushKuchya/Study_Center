@@ -60,7 +60,7 @@ export class BookingFormComponent implements OnInit {
     
     console.log(this.userForm.value);
     alert("Form Submitted Successfully!!");
-    this.userForm.reset() 
+    this.userForm.reset()  
   }
 
 }
