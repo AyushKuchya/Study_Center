@@ -16,6 +16,10 @@ app.use(morgan("dev"))
 app.use('/', adminRouter)
 
 
+app.use((err, req, res, next) => {
+    console.error(err)
+    res.status(401).json({ message: "Error occured" })
+})
 app.listen(process.env.PORT, () => {
     console.log(`Server running on ${process.env.PORT}`)
 })
