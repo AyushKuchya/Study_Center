@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(morgan("dev"))
 
-app.use('/admin_', adminRouter)
+app.use('/', adminRouter)
 
 
 app.use((err, req, res, next) => {
