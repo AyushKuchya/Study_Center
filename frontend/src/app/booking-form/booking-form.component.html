@@ -106,8 +106,8 @@
                   <mat-form-field appearance="fill">
                     <mat-label>Select Seat Number</mat-label>
                     <mat-select formControlName="seat_no">
-                      <mat-option *ngFor="let seat of Seats" [value]="seat.value">
-                        {{seat.viewValue}}
+                      <mat-option *ngFor="let seat of Seats" [value]="seat.seatno">
+                        Seat-{{seat.seatno}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>

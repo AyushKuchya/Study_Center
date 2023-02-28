@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup , Validators } from '@angular/forms';
 import { DataTransferService } from '../data-transfer.service';
 
@@ -12,29 +13,25 @@ export class BookingFormComponent implements OnInit {
   userForm:FormGroup;
   paymentStatus =[{value:'completed',viewValue:'Completed'},
                   {value:'pending',viewValue:'Pending'}]
+  Seats =[]
 
-  constructor(private dataTransferService: DataTransferService) {
+  constructor(private dataTransferService: DataTransferService,private http:HttpClient) {
     this.dataTransferService.getData().subscribe(data => {
       this.userData = data;
       console.log("------------------",data);
     });
-    
+    this.getSeatInfo();
 
   }
-  Seats=[
-    {value: '1', viewValue: 'Seat-1'},
-    {value: '2', viewValue: 'Seat-2'},
-    {value: '3', viewValue: 'Seat-3'},
-    {value: '4', viewValue: 'Seat-4'},
-    {value: '5', viewValue: 'Seat-5'},
-    {value: '6', viewValue: 'Seat-5'},
-    {value: '7', viewValue: 'Seat-7'},
-    {value: '8', viewValue: 'Seat-8'},
-    {value: '9', viewValue: 'Seat-9'},
-    {value: '10', viewValue: 'Seat-10'},
-    {value: '11', viewValue: 'Seat-11'},
-    {value: '12', viewValue: 'Seat-12'},
-  ];
+  getSeatInfo(){
+    this.http.get('http://localhost:3000/seatinformation').subscribe((data:any)=>{
+      this.Seats=data.data;
+      console.log("data is here",data);
+      console.log(this.Seats);
+      
+    }) 
+  }
+  
 
 
   ngOnInit(): void { 
