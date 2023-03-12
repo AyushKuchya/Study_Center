@@ -23,6 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookingFormComponent } from './booking-form/booking-form.component';
+import { DetailsComponent } from './details/details.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
     FrontPageComponent,
     LoginComponent,
     DashboardComponent,
-    BookingFormComponent
+    BookingFormComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
     MatGridListModule,
     MatDatepickerModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
 
   ],
   providers: [],

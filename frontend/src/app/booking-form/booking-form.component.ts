@@ -26,7 +26,6 @@ export class BookingFormComponent implements OnInit {
   getSeatInfo(){
     this.http.get('http://localhost:3000/seatinformation').subscribe((data:any)=>{
       this.Seats=data.data;
-      console.log("data is here",data);
       console.log(this.Seats);
       
     }) 
@@ -44,20 +43,54 @@ export class BookingFormComponent implements OnInit {
       gender: new FormControl(this.userData.gender,Validators.required),
       qualification:new FormControl(this.userData.qualification,Validators.required),
       fee_structure:new FormControl(this.userData.fee_structure,Validators.required),
-      start_date:new FormControl(Date,Validators.required),
-      end_date:new FormControl(Date,Validators.required),
-      seat_no:new FormControl(null,Validators.required),
-      payment_status: new FormControl(null,Validators.required)
+      start_date:new FormControl(this.userData.start_date,Validators.required),
+      end_date:new FormControl(this.userData.end_date,Validators.required),
+      seat_no:new FormControl(this.userData.seat_no,Validators.required),
+      payment_status: new FormControl(this.userData.status,Validators.required)
     })
   }
   onSubmit(){
-    // let date =this.userForm.value.start_date.toLocaleDateString()
-    // this.userForm.value.start_date = date 
-    // console.log(this.userForm.value.start_date);
+
+    let body ={
+      "seat_no":this.userForm.value.seat_no,
+      //"seat_no":'g',
+      "aadhar": this.userForm.value.aadhar_no,
+      "name":this.userForm.value.name,
+      "email":this.userForm.value.email,
+      "address":this.userForm.value.address,
+      "fee_structure":this.userForm.value.fee_structure,
+      "qualification":this.userForm.value.qualification,
+      "status":this.userForm.value.payment_status,
+      "mobile_no":this.userForm.value.mobile_no,
+      "start_date":this.userForm.value.start_date.toJSON(),
+      "end_date":this.userForm.value.end_date.toJSON(),
+      "gender":this.userForm.value.gender
+    }
+    if(this.userForm.value.start_date < this.userForm.value.end_date){
+      this.http.post('http://localhost:3000/userdetails',body).subscribe(
+        (data: any[]) => {
+          console.log('api call ha been made',data);
+          alert("Form Submitted Successfully!!");
+          this.userForm.reset() 
+      },
+      (error) =>{
+        console.log(error);
+        alert('Something went wrong!!! Please try again')
+      }
+      )
+  
+    }
+    else{
+      alert('Please select correct Date!!! end date cannot be smaller than start date')
+    }
+
+
+ 
+  
     
-    console.log(this.userForm.value);
-    alert("Form Submitted Successfully!!");
-    this.userForm.reset()  
+    // console.log(this.userForm.value);
+    // console.log((this.userForm.value.start_date.toJSON()));
+    // console.log(this.userForm.value.end_date.toJSON());
   }
 
 }
