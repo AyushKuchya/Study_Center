@@ -1,0 +1,14 @@
+{
+  "seat_no":1,
+  "aadhar": 827364206128,
+  "name":"Ayush Kuchya",
+  "email":"kuchyaayush@gmail.com",
+  "address":"plot no 129 near clock square vijay nagar jabalpur",
+  "fee_structure":"3 Month-2800rs",
+  "qualification":"Graduate",
+  "status":"completed",
+  "mobile_no":8959896657,
+  "start_date":"2023-03-07T18:30:00.000Z",
+  "end_date":"2023-03-30T18:30:00.000Z",
+  "gender":"Male"
+}
