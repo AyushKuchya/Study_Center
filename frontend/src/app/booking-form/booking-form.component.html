@@ -3,7 +3,7 @@
         <li>Home</li>
         <li><a class="link-dark"href="/dashboard">Table</a></li>
         <li><a class="link-dark"href="/booking">Seat Booking</a> </li>
-        <li>Details</li>
+        <li><a class="link-dark"href="/details">Details</a></li>
     </ul>
     <form [formGroup]="userForm">
       <mat-grid-list cols="1" rowHeight="1200px">
@@ -106,8 +106,8 @@
                   <mat-form-field appearance="fill">
                     <mat-label>Select Seat Number</mat-label>
                     <mat-select formControlName="seat_no">
-                      <mat-option *ngFor="let seat of Seats" [value]="seat.value">
-                        {{seat.viewValue}}
+                      <mat-option *ngFor="let seat of Seats" [value]="seat.seat_no">
+                        Seat-{{seat.seat_no}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>

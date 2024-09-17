@@ -1,0 +1,220 @@
+<body>
+    <ul>
+        <li>Home</li>
+        <li><a class="link-dark"href="/dashboard">Table</a></li>
+        <li><a class="link-dark"href="/booking">Seat Booking</a> </li>
+        <li><a class="link-dark"href="/details">Details</a></li>
+    </ul>
+    <h5 class="seat">Total Seats Available - {{this.seatAvailable}} </h5>
+    <h4 class="heading">Active Users Details</h4>
+    <table mat-table [dataSource]="userData" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="seat_no">
+            <th mat-header-cell *matHeaderCellDef> Seat No </th>
+            <td mat-cell *matCellDef="let element"> {{element.seat_no}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef> Gender </th>
+            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+          </ng-container>
+      
+        
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentstatus">
+            <th mat-header-cell *matHeaderCellDef> Payment Status </th>
+            <ng-container mat-cell *matCellDef="let element">
+                <td *ngIf ="(element.status == 'completed')" ><button type="button" class="btn btn-success s">  {{element.status}}</button> </td>
+                <td *ngIf ="(element.status == 'pending')" ><button type="button" class="btn btn-danger s">  {{element.status}}</button> </td>
+            </ng-container>
+            
+          </ng-container>
+      
+        
+        <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef> Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.mobile_no}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="aadhar_no">
+          <th mat-header-cell *matHeaderCellDef> Aadhar Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.aadhar}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fee_structure">
+            <th mat-header-cell *matHeaderCellDef> Fees option</th>
+            <td mat-cell *matCellDef="let element"> {{element.fee_structure}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="end_date">
+            <th mat-header-cell *matHeaderCellDef>End Date</th>
+            <td mat-cell *matCellDef="let element">{{getDate(element.end_date)}} </td>
+          </ng-container>
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef> Address</th>
+            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action</th>
+            <td mat-cell *matCellDef="let element"><button type="button" class="btn btn-secondary s" (click)="RowSelected(element)"><i class="fa-solid fa-pen-to-square"></i></button></td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <h4 class="heading">Inactive Users Details</h4>
+      <table mat-table [dataSource]="inactiveUserData" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="seat_no">
+            <th mat-header-cell *matHeaderCellDef> Seat No </th>
+            <td mat-cell *matCellDef="let element"> {{element.seat_no}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef> Gender </th>
+            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+          </ng-container>
+      
+        
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentstatus">
+            <th mat-header-cell *matHeaderCellDef> Payment Status </th>
+            <ng-container mat-cell *matCellDef="let element">
+                <td *ngIf ="(element.status == 'completed')" ><button type="button" class="btn btn-success s">  {{element.status}}</button> </td>
+                <td *ngIf ="(element.status == 'pending')" ><button type="button" class="btn btn-danger s">  {{element.status}}</button> </td>
+            </ng-container>
+            
+          </ng-container>
+      
+        
+        <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef> Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.mobile_no}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="aadhar_no">
+          <th mat-header-cell *matHeaderCellDef> Aadhar Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.aadhar}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fee_structure">
+            <th mat-header-cell *matHeaderCellDef> Fees option</th>
+            <td mat-cell *matCellDef="let element"> {{element.fee_structure}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="end_date">
+            <th mat-header-cell *matHeaderCellDef>End Date</th>
+            <td mat-cell *matCellDef="let element">{{getDate(element.end_date)}} </td>
+          </ng-container>
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef> Address</th>
+            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action</th>
+            <td mat-cell *matCellDef="let element"><button type="button" class="btn btn-secondary s" (click)="RowSelected(element)"><i class="fa-solid fa-pen-to-square"></i></button></td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+ 
+<div>
+  <footer class="bg-light text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #3b5998;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #55acee;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #dd4b39;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #ac2bac;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #0082ca;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+      <!-- Github -->
+      <a
+        class="btn btn-primary btn-floating m-1"
+        style="background-color: #333333;"
+        href="#!"
+        role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+  
+</div>
+
+ 
+    
+</body>
