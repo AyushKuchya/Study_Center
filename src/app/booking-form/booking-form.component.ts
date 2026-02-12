@@ -27,7 +27,7 @@ export class BookingFormComponent implements OnInit {
     {value: '3', viewValue: 'Seat-3'},
     {value: '4', viewValue: 'Seat-4'},
     {value: '5', viewValue: 'Seat-5'},
-    {value: '6', viewValue: 'Seat-5'},
+    {value: '6', viewValue: 'Seat-6'},
     {value: '7', viewValue: 'Seat-7'},
     {value: '8', viewValue: 'Seat-8'},
     {value: '9', viewValue: 'Seat-9'},
@@ -47,8 +47,8 @@ export class BookingFormComponent implements OnInit {
       gender: new FormControl(this.userData.gender,Validators.required),
       qualification:new FormControl(this.userData.qualification,Validators.required),
       fee_structure:new FormControl(this.userData.fee_structure,Validators.required),
-      start_date:new FormControl(Date,Validators.required),
-      end_date:new FormControl(Date,Validators.required),
+      start_date:new FormControl(null,Validators.required),
+      end_date:new FormControl(null,Validators.required),
       seat_no:new FormControl(null,Validators.required),
       payment_status: new FormControl(null,Validators.required)
     })
